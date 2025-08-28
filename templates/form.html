@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ 'Editar' if persona else 'Crear' }} Persona</title>
+</head>
+<body>
+    <h1>{{ 'Editar' if persona else 'Crear' }} Persona</h1>
+    <form method="post">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" value="{{ persona.nombre if persona else '' }}" required><br>
+        <label>Edad:</label>
+        <input type="number" name="edad" value="{{ persona.edad if persona else '' }}" required><br>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/">Volver</a>
+</body>
+</html>

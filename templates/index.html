@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Personas</title>
+</head>
+<body>
+    <h1>Listado de Personas</h1>
+    <a href="/crear">Crear nueva persona</a>
+    <ul>
+        {% for persona in personas %}
+            <li>
+                {{ persona.nombre }} ({{ persona.edad }} años)
+                - <a href="/editar/{{ persona.id }}">Editar</a>
+                - <a href="/eliminar/{{ persona.id }}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
