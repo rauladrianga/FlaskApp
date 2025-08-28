@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 # Crear tabla si no existe
 def init_db():
+    print(f"✅ Iniciando la DB")
     conn = sqlite3.connect('personas.db')
     cursor = conn.cursor()
     cursor.execute('''
@@ -19,6 +20,8 @@ def init_db():
 
 @app.route('/')
 def index():
+
+    print(f"✅ Entrando a Index")
     conn = sqlite3.connect('personas.db')
     personas = conn.execute('SELECT * FROM personas').fetchall()
     conn.close()
@@ -26,6 +29,7 @@ def index():
 
 @app.route('/agregar', methods=['POST'])
 def agregar():
+    print(f"✅ Entrando a Agregar")
     try:
         nombre = request.form['nombre']
         edad = request.form['edad']
@@ -42,6 +46,7 @@ def agregar():
 
 @app.route('/eliminar/<int:id>')
 def eliminar(id):
+    print(f"✅ Entrando a Eliminar")
     conn = sqlite3.connect('personas.db')
     conn.execute('DELETE FROM personas WHERE id = ?', (id,))
     conn.commit()
@@ -49,5 +54,6 @@ def eliminar(id):
     return redirect('/')
 
 if __name__ == '__main__':
+    print(f"✅ Entrando a Main")
     init_db()
     app.run(debug=True)
