@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -61,4 +62,6 @@ with conectar() as conn:
     conn.commit()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    # OJO: Cambiar host a 0.0.0.0 para que Render detecte el puerto y acceda a la app
+    app.run(host='0.0.0.0', port=port, debug=True)
