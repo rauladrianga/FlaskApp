@@ -2,19 +2,62 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Personas</title>
+    <title>CRUD con Flask</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='background.jpg') }}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: sans-serif;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2em;
+            margin: 2em auto;
+            width: 500px;
+            border-radius: 10px;
+        }
+
+        input, button {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: white;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h1>Listado de Personas</h1>
-    <a href="/crear">Crear nueva persona</a>
-    <ul>
-        {% for persona in personas %}
-            <li>
-                {{ persona.nombre }} ({{ persona.edad }} años)
-                - <a href="/editar/{{ persona.id }}">Editar</a>
-                - <a href="/eliminar/{{ persona.id }}">Eliminar</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Personas registradas</h1>
+        <form action="/agregar" method="post">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="number" name="edad" placeholder="Edad" required>
+            <button type="submit">Agregar Persona</button>
+        </form>
+
+        <table border="1">
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+            {% for persona in personas %}
+            <tr>
+                <td>{{ persona[1] }}</td>
+                <td>{{ persona[2] }}</td>
+                <td><a href="/eliminar/{{ persona[0] }}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
