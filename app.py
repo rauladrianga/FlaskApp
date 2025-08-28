@@ -26,13 +26,19 @@ def index():
 
 @app.route('/agregar', methods=['POST'])
 def agregar():
-    nombre = request.form['nombre']
-    edad = request.form['edad']
-    conn = sqlite3.connect('personas.db')
-    conn.execute('INSERT INTO personas (nombre, edad) VALUES (?, ?)', (nombre, edad))
-    conn.commit()
-    conn.close()
+    try:
+        nombre = request.form['nombre']
+        edad = request.form['edad']
+        conn = sqlite3.connect('personas.db')
+        conn.execute('INSERT INTO personas (nombre, edad) VALUES (?, ?)', (nombre, edad))
+        conn.commit()
+        print(f"✅ Insertado: {nombre}, {edad}")
+    except Exception as e:
+        print("❌ Error al insertar:", e)
+    finally:
+        conn.close()
     return redirect('/')
+
 
 @app.route('/eliminar/<int:id>')
 def eliminar(id):
