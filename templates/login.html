@@ -1,0 +1,9 @@
+<h2>Acceso Administrador</h2>
+<form method="post">
+    <input type="text" name="usuario" placeholder="Usuario" required>
+    <input type="password" name="clave" placeholder="Clave" required>
+    <button type="submit">Ingresar</button>
+    {% if error %}
+    <p style="color:  red;">{{ error }}</p>
+    {% endif %}
+</form>

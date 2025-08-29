@@ -1,0 +1,30 @@
+<h2>Panel de Administración</h2>
+<p><a href="/logout">Cerrar sesión</a></p>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+    </tr>
+    {% for cita in citas %}
+    <tr>
+        <td>{{ cita[0] }}</td>
+        <td>{{ cita[1] }}</td>
+        <td>{{ cita[2] }}</td>
+        <td>{{ cita[3] }}</td>
+        <td>{{ cita[4] }}</td>
+        <td>{{ cita[5] }}</td>
+        <td>{{ cita[6] }}</td>
+        <td>{{ cita[7] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<form action="/admin/descargar">
+    <button type="submit">Descargar Excel</button>
+</form>
